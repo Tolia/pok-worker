@@ -1,4 +1,4 @@
-var rabbitUrl      = process.env.RABBIT_URL      || 'amqp://localhost';
+var rabbitUrl      = process.env.RABBIT_URL || process.env.RABBITMQ_PORT_5672_TCP || 'amqp://localhost';
 var rabbitLogin    = process.env.RABBIT_LOGIN    || 'guest';
 var rabbitPassword = process.env.RABBIT_PASSWORD || 'guest';
 var routingPub     = process.env.ROUTING_PUB     || 'pg.worker.out';

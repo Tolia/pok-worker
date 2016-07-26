@@ -9,9 +9,8 @@ ENV NODE_ENV production
 
 WORKDIR /src
 ADD . .
-EXPOSE 5671 5672
 
-RUN npm install -g --production
+RUN npm install --production
 
 run apk del git
 
