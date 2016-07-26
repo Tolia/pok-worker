@@ -5,10 +5,10 @@ RUN apk update && apk upgrade \
 
 RUN rm -rf /var/cache/apk/*
 
-ENV NODE_ENV production
-
 WORKDIR /src
 ADD . .
+
+ENV NODE_ENV production
 
 RUN npm install
 
