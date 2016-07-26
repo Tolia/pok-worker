@@ -1,0 +1,38 @@
+FROM node:6.2.2-slim
+
+ENV PYTHON_VERSION 2.7.12
+
+RUN apt-get update && \
+    apt-get Install -y \
+      python2.7 \
+      make \
+      gcc --no-install-recommends \
+
+
+RUN apt-get autoclean \
+ && apt-get clean
+    apk del sqlite-libs
+
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN  && \
+
+RUN -p /usr/src/app
+
+
+WORKDIR /usr/src/app
+
+ENV NODE_ENV production
+
+# Install app dependencies
+ADD package.json /usr/src/app/
+RUN npm config set python /usr/bin/python
+
+RUN npm install s2geometry-node -g --production
+RUN npm install --production
+
+# Bundle app source
+COPY . /usr/src/app
+
+# Start app
+CMD [ "node", "local" ]

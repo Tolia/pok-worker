@@ -1,0 +1,21 @@
+{
+  "name": "pokemonMapWorker",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./index.js",
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "dependencies": {
+    "geojson-to-image": "0.0.0",
+    "pokemon-go-node-api": "git+https://github.com/Tolia/Pokemon-GO-node-api.git"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/ava test/index.js"
+  },
+  "author": "tolia <toliademidov@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "node-lambda": "^0.8.6"
+  }
+}
