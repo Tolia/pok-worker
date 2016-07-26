@@ -9,9 +9,10 @@ ENV NODE_ENV production
 
 WORKDIR /src
 ADD . .
+EXPOSE 5671 5672
 
 RUN npm install -g --production
 
-run apk delete git
+run apk del git
 
 CMD ["node", "amqp.js"]

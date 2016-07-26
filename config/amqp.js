@@ -10,7 +10,7 @@ module.exports = {
     sub: routingSub
   },
   connection: {
-    host: rabbitUrl,
+    url: rabbitUrl,
     noDelay: true,
     ssl: {
       enabled: false

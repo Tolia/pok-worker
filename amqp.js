@@ -1,9 +1,12 @@
 "use strict";
 
 const APP = require('./index')
-const amqp = require('amqplib')
 const config = require('./config/amqp')
+const user = require('./config/user')
 const amqlibCb = require('amqplib/callback_api')
+
+console.log(config)
+console.log(user)
 
 const bail = (err) => {
   console.error(err)
@@ -24,9 +27,9 @@ const subscriber = (conn, msg, cb) => {
   const { uid, location } = JSON.parse(msg.content.toString())
   const event = {
     debug: false,
-    pgoUsername: process.env.PGO_USERNAME, //|| 'petrivanovic101@gmail.com'), // 'anatolijvasickin@gmail.com'
-    pgoPassword: process.env.PGO_PASSWORD, // || '2041651734561566042'), //'adjh321kdsaasd'
-    pgoProvider: process.env.PGO_PROVIDER, // || 'google'),
+    pgoUsername: user.username,
+    pgoPassword: user.password, // || '2041651734561566042'), //'adjh321kdsaasd'
+    pgoProvider: user.provider, // || 'google'),
     pgoLocation: location
   }
   console.log(event)
@@ -55,7 +58,7 @@ const consumer = (conn) => {
   })
 }
 
-amqlibCb.connect(config.connection.host, function(err, conn) {
+amqlibCb.connect(config.connection.url, function(err, conn) {
   if (err != null) bail(err);
 
   consumer(conn)
