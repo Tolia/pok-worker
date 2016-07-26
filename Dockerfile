@@ -10,7 +10,7 @@ ENV NODE_ENV production
 WORKDIR /src
 ADD . .
 
-RUN npm install --production
+RUN npm install
 
 run apk del git
 
