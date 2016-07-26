@@ -15,4 +15,4 @@ ADD . .
 # RUN npm install -g --production node-gyp@latest
 RUN npm install -g --production
 
-CMD ["node", "local.js"]
+CMD ["node", "amqp.js"]
