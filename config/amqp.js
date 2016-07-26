@@ -1,4 +1,5 @@
-var rabbitUrl      = process.env.RABBIT_URL || process.env.RABBITMQ_PORT_5672_TCP || 'amqp://localhost';
+var dockerRabbitUrl = `amqp://${ process.env.RABBITMQ_A80AD340_PORT_5672_TCP_ADDR  }`
+var rabbitUrl      = process.env.RABBIT_URL      || 'amqp://localhost';
 var rabbitLogin    = process.env.RABBIT_LOGIN    || 'guest';
 var rabbitPassword = process.env.RABBIT_PASSWORD || 'guest';
 var routingPub     = process.env.ROUTING_PUB     || 'pg.worker.out';
