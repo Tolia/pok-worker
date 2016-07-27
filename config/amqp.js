@@ -7,7 +7,7 @@ const url = process.env.NODE_ENV == 'production' ? dockerRabbitUrl : 'amqp://loc
 const routingPub     = process.env.ROUTING_PUB     || 'pg.worker.out';
 const routingSub     = process.env.ROUTING_SUB     || 'pg.worker.in';
 
-module.exports = {
+const config = {
   routing: {
     pub: routingPub,
     sub: routingSub
@@ -31,4 +31,8 @@ module.exports = {
     noDeclare: false,
     closeChannelOnUnsubscribe: false
   }
-};
+}
+
+console.log('confilg.amqp', config)
+
+module.exports = config
