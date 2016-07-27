@@ -1,7 +1,7 @@
 "use strict";
 
 const amqp = require('./lib/amqp')
-const main = require('./lib/main')
+const search = require('./lib/main')
 
 const userConfig = require('./config/user')
 const mapConfig = require('./config/mapbox')
@@ -30,7 +30,8 @@ Pokeio.playerInfo.debug = config.debug
 Pokeio.init(userConfig.username, userConfig.password, baseLocation, userConfig.provider, (err) => {
   if (err) { bail(err) }
 
-  amqp.sub((uid, coords, ack) => {
+  amqp.sub((event, ack) => {
+    const { uid, coords } = event
     let startAt = new Date()
     let location = {
       type: 'coords',
@@ -41,9 +42,9 @@ Pokeio.init(userConfig.username, userConfig.password, baseLocation, userConfig.p
       }
     }
 
-    main(location, (pokemons, currentLocation, locations) => {
-      let imgLocations = Pokeio.playerInfo.debug ? locations : [centerLocation]
-      let img = MapGenerator(config, pokemons, imgLocations)
+    search(location, (pokemons, currentLocation, locations) => {
+      let imgLocations = Pokeio.playerInfo.debug ? locations : [currentLocation]
+      const img = MapGenerator(config, pokemons, imgLocations)
 
       amqp.pub({
         uid: uid,
