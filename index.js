@@ -9,10 +9,7 @@ const mapBoxAuthentication = {
 }
 
 exports.handler = (event, context, callback) => {
-  const location = {
-    type: 'name',
-    name: event.pgoLocation
-  }
+
   const pok = {
     username: event.pgoUsername,
     password: event.pgoPassword,
@@ -25,7 +22,7 @@ exports.handler = (event, context, callback) => {
   }
 
   try {
-    main(config, location, (pokemons, centerLocation, scanLocations) => {
+    main(config, event.pgoLocation, (pokemons, centerLocation, scanLocations) => {
       let locations = [centerLocation]
       let img = MapGenerator(config, pokemons, locations)
       callback(null, img)

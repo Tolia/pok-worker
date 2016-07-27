@@ -6,7 +6,6 @@ const user = require('./config/user')
 const amqlibCb = require('amqplib/callback_api')
 
 console.log(config)
-console.log(user)
 
 const bail = (err) => {
   console.error(err)
@@ -24,22 +23,28 @@ const publisher = (conn, payload) => {
 }
 
 const subscriber = (conn, msg, cb) => {
-  const { uid, location } = JSON.parse(msg.content.toString())
+  const { uid, coords } = JSON.parse(msg.content.toString())
+  const point = {
+    latitude: coords.latitude,
+    longitude: coords.longitude
+  }
+
   const event = {
-    debug: false,
+    debug: true,
     pgoUsername: user.username,
     pgoPassword: user.password, // || '2041651734561566042'), //'adjh321kdsaasd'
     pgoProvider: user.provider, // || 'google'),
-    pgoLocation: location
+    pgoLocation: { type: 'coords', coords: point }
   }
-  console.log(event)
+
+  console.log('send', event)
 
   APP.handler(event, {}, (err, img) => {
-    console.log('APP.handler-done', 2)
+    console.log('pub', uid, img, err)
     publisher(conn, {
       uid: uid,
       err: err,
-      img: img
+      src: img
     })
     cb()
   })

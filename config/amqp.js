@@ -11,7 +11,7 @@ module.exports = {
     sub: routingSub
   },
   connection: {
-    url: rabbitUrl,
+    url: dockerRabbitUrl,
     noDelay: true,
     ssl: {
       enabled: false
