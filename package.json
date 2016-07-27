@@ -2,11 +2,12 @@
   "name": "pokemonMapWorker",
   "version": "0.0.1",
   "description": "",
-  "main": "./index.js",
+  "main": "./amqp.js",
   "engines": {
     "node": ">= 6.0.0"
   },
   "dependencies": {
+    "amqplib": "0.4.1",
     "geojson-to-image": "0.0.0",
     "pokemon-go-node-api": "git+https://github.com/Tolia/Pokemon-GO-node-api.git"
   },
