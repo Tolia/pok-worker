@@ -49,20 +49,26 @@ Pokeio.init(userConfig.username, userConfig.password, baseLocation, userConfig.p
 
     console.log(`event №${uid}`)
 
-    search(location, (pokemons, currentLocation, locations) => {
-      let imgLocations = Pokeio.playerInfo.debug ? locations : [currentLocation]
-      const img = MapGenerator(config, pokemons, imgLocations)
+    try {
+      search(location, (pokemons, currentLocation, locations) => {
+        let imgLocations = Pokeio.playerInfo.debug ? locations : [currentLocation]
+        const img = MapGenerator(config, pokemons, imgLocations)
 
-      console.log(`event №${uid} - done`)
+        console.log(`event №${uid} - done`)
 
+        amqp.pub({
+          uid: uid,
+          src: img,
+          time: new Date() - startAt
+        })
+        ack()
+      })
+    } catch (e) {
       amqp.pub({
-        uid: uid,
-        src: img,
+        error: e,
         time: new Date() - startAt
       })
-
-      ack()
-    })
+    }
   })
 
 })
