@@ -4,8 +4,8 @@ const url = process.env.NODE_ENV == 'production' ? dockerRabbitUrl : 'amqp://loc
 // var rabbitLogin    = process.env.RABBIT_LOGIN    || 'guest';
 // var rabbitPassword = process.env.RABBIT_PASSWORD || 'guest';
 
-const routingPub     = process.env.ROUTING_PUB     || 'pg.worker.out';
-const routingSub     = process.env.ROUTING_SUB     || 'pg.worker.in';
+const routingPub = process.env.ROUTING_PUB || 'pg.worker.out';
+const routingSub = process.env.ROUTING_SUB || 'pg.worker.in';
 
 const config = {
   routing: {
