@@ -14,4 +14,4 @@ RUN npm install
 
 run apk del git
 
-CMD ["node", "lib/main.js"]
+CMD ["node", "index.js"]
