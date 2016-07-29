@@ -9,7 +9,7 @@
   "dependencies": {
     "amqplib": "0.4.1",
     "geojson-to-image": "0.0.0",
-    "pokemon-go-node-api": "git+https://github.com/Tolia/Pokemon-GO-node-api.git#291962acd573c94e436226bd1cdc42a9d5024832"
+    "pokemon-go-node-api": "git+https://github.com/Tolia/Pokemon-GO-node-api.git#fix.geocoder"
   },
   "scripts": {
     "test": "./node_modules/.bin/ava test/index.js"
