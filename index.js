@@ -1,7 +1,16 @@
 const main = require('./lib/main')
 const amqp = require('./lib/amqp')
 
+console.log('================================================')
+console.log('|                start worker                   |')
+console.log('================================================')
+
 main((api) => {
+  console.log('================================================')
+  console.log('|                amqp connect                  |')
+  console.log('================================================')
+
+
   amqp.sub((event, ask) => {
     const { uid, coords } = event
     console.log(`event №${uid} - new`)
