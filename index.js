@@ -18,4 +18,6 @@ main((api) => {
   })
 })
 
-
+process.on('exit', (code) => {
+  console.log(`exit ${code}`)
+});
