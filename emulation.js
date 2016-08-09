@@ -3,8 +3,8 @@ const main = require('./lib/main')
 const event = {
   uid: 0,
   coords: {
-    latitude: 55.753621,
-    longitude: 37.622565,
+    latitude: 55.75362,
+    longitude: 37.62256,
   }
 }
 
