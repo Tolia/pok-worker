@@ -14,4 +14,4 @@ RUN npm install
 
 run apk del git
 
-CMD ["node", "amqp.js"]
+CMD ["node", "index.js"]
